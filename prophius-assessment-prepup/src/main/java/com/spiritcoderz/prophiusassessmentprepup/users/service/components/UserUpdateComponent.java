@@ -30,7 +30,7 @@ public class UserUpdateComponent {
 
         UpdatePasswordRequest updatePasswordRequest = ((UpdatePasswordRequest) updateRequest);
 
-        Optional<User> user = userEntityManager.getUserById(updatePasswordRequest.getUserId());
+        Optional<User> user = userEntityManager.getUserByEmail(updatePasswordRequest.getEmail());
 
         if(user.isPresent()){
 
@@ -41,7 +41,7 @@ public class UserUpdateComponent {
             User savedUser = userEntityManager.saveUser(updatedUser);
             return checkIfUpdateSuccessful(savedUser, updatedUser, userResponse);
 
-            //TODO:: remove user from cache if available
+            //TODO:: update cache immediately
         }
 
 
@@ -69,7 +69,7 @@ public class UserUpdateComponent {
         }
 
         if(profileImage.getOriginalFilename() != null){
-            Optional<User> savedUser = userEntityManager.getUserById(updateRequest.getUserId());
+            Optional<User> savedUser = userEntityManager.getUserByEmail(updateRequest.getEmail());
             userCopy = updateUserProfileImageDetails( savedUser, profileImage );
         }
 

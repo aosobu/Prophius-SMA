@@ -14,8 +14,8 @@ import java.util.Optional;
 public class UserDeleteComponent {
 
     private final UserEntityManager userEntityManager;
-    public UserResponse deleteUser(Integer id, UserResponse userResponse) {
-        Optional<User> user = userEntityManager.getUserById(id);
+    public UserResponse deleteUser(String email, UserResponse userResponse) {
+        Optional<User> user = userEntityManager.getUserByEmail(email);
 
         if(user.isPresent()) {
             User deleteUser = user.get();
@@ -23,13 +23,13 @@ public class UserDeleteComponent {
 
             deleteUser = userEntityManager.saveUser(deleteUser);
             updateUserResponseWithDeleteSuccess(deleteUser, userResponse);
+            //TODO:: update cache immediately
         }
 
         if(user.isEmpty()){
             userResponse.setMessage(AppConstants.DELETE_REQUEST_FAILURE);
         }
 
-        //TODO:: delete user from cache if exists at the time of deleting user record.
         return userResponse;
     }
 

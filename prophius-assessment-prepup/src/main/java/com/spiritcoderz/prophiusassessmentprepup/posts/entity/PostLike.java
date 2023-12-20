@@ -20,5 +20,4 @@ public class PostLike {
     @GeneratedValue
     private Integer id;
     private Integer postId;
-    private boolean isCounted;
 }

@@ -1,10 +1,13 @@
 package com.spiritcoderz.prophiusassessmentprepup.users.repository;
 
 import com.spiritcoderz.prophiusassessmentprepup.users.entity.User;
+import com.spiritcoderz.prophiusassessmentprepup.users.service.components.UserCacheManagementComponent;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,26 +16,26 @@ public class UserEntityManager {
 
     private final UserRepository userRepository;
 
-
     public User saveUser(User user){
-
-        System.out.println("about to save user");
         return userRepository.save(user);
     }
 
 
-    @Cacheable(value="users", key="#email")
+    @Cacheable(value="security", key = "#email")
     public Optional<User> getUserByEmail(String email){
-
-        System.out.println("Going to retrieve data from the database");
-        return userRepository.findByEmail(email);
+        System.out.println("going to the database");
+       return userRepository.findByEmail(email);
     }
 
-
-    @Cacheable(value="users", key="#id")
-    public Optional<User> getUserById(Integer id){
-
-        System.out.println("Going to retrieve data from the database");
+    public Optional<User> getUserById(int id){
         return userRepository.findById(id);
+    }
+
+    public List<String> selectDistinctEmails() {
+        return userRepository.selectDistinctEmails();
+    }
+
+    public List<Integer> selectDistinctUserIds() {
+        return userRepository.selectDistinctUserIds();
     }
 }

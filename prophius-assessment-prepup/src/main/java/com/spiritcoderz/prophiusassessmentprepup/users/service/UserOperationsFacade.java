@@ -20,10 +20,6 @@ public class UserOperationsFacade {
         return userSaveComponent.saveUser(userRequest, new UserResponse());
     }
 
-    public UserResponse getUserById(Integer id) {
-        return userRetrieveComponent.retrieveUserById(id, new UserResponse(), new ArrayList<>());
-    }
-
     public UserResponse getUserByEmail(String email) {
         return userRetrieveComponent.retrieveUserByEmail(email, new UserResponse(), new ArrayList<>());
     }
@@ -40,7 +36,7 @@ public class UserOperationsFacade {
         return followComponent.execute(followRequest, userResponse);
     }
 
-    public UserResponse deleteUser(Integer id) {
-        return userDeleteComponent.deleteUser(id, new UserResponse());
+    public UserResponse deleteUser(String email) {
+        return userDeleteComponent.deleteUser(email, new UserResponse());
     }
 }

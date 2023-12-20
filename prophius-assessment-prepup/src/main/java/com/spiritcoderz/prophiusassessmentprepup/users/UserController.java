@@ -14,7 +14,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping()
+    @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody RegisterUserRequest userRequest) {
         return ResponseEntity.ok(userService.registerUser(userRequest));
     }
@@ -22,11 +22,6 @@ public class UserController {
     @PostMapping("/follow")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody FollowRequest followRequest) {
         return ResponseEntity.ok(userService.executeFollowRequest(followRequest));
-    }
-
-    @GetMapping("/id/{id}")
-    public ResponseEntity<UserResponse> retrieve(@PathVariable Integer id) {
-        return ResponseEntity.ok(userService.getUserByIdCredential(id));
     }
 
     @GetMapping("/email/{email}")
@@ -44,8 +39,8 @@ public class UserController {
         return ResponseEntity.ok(userService.updateUserImage(updateRequest));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<UserResponse> delete(@PathVariable int id) {
-        return ResponseEntity.ok(userService.deleteUser(id));
+    @DeleteMapping("/{email}")
+    public ResponseEntity<UserResponse> delete(@PathVariable String email) {
+        return ResponseEntity.ok(userService.deleteUser(email));
     }
 }

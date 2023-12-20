@@ -9,8 +9,11 @@ import com.spiritcoderz.prophiusassessmentprepup.users.entity.User;
 import com.spiritcoderz.prophiusassessmentprepup.users.enums.Role;
 import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserEntityManager;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -20,6 +23,10 @@ public class UserSaveComponent {
     private final UserEntityManager userEntityManager;
     private final BeanWrapper beanWrapper;
     private final List<ValidatorManager> validatorProviders;
+
+    private final UserCacheManagementComponent userCacheManagementComponent;
+
+    private final CacheManager cacheManager;
 
     public UserResponse saveUser(RegisterUserRequest userRequest, UserResponse userResponse){
         UserResponse [] validationResponseContainer = new UserResponse[1];
@@ -45,10 +52,10 @@ public class UserSaveComponent {
             String username = extractUserName( userRequest.getEmail() );
             User newUser = buildUser( username, userRequest );
             User savedUser = userEntityManager.saveUser( newUser );
-
+            userCacheManagementComponent.addUserToCache(savedUser);
             updateUserResponse(savedUser, userResponse);
-        }
 
+        }
 
         return userResponse;
     }
@@ -75,7 +82,7 @@ public class UserSaveComponent {
                     .builder()
                     .username(username)
                     .email(userRequest.getEmail())
-                    .profilePictureFilePath("http://localhost/images/image.png")
+                    .profilePictureFilePath("")
                     .isEnabled(true)
                     .password(beanWrapper.getPasswordEncoder().encode(userRequest.getPassword()))
                     .role(Role.USER)
@@ -83,12 +90,11 @@ public class UserSaveComponent {
     }
 
     private UserDTO buildUserDTO(User savedUser) {
-
         return UserDTO
                 .builder()
                 .username(savedUser.getUsername())
                 .email(savedUser.getEmail())
-                .profilePicture("http://localhost/images/image.png")
+                .profilePicture("")
                 .build();
     }
 }

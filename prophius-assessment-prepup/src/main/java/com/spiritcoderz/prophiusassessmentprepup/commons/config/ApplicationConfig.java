@@ -2,6 +2,7 @@ package com.spiritcoderz.prophiusassessmentprepup.commons.config;
 
 import com.spiritcoderz.prophiusassessmentprepup.commons.wrappers.BeanWrapper;
 import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserEntityManager;
+import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
@@ -48,7 +49,8 @@ public class ApplicationConfig {
 
     @Bean
     public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("post-like");
+        String [] caches = {"post-like", "user"};
+        return new ConcurrentMapCacheManager(caches);
     }
 
 }

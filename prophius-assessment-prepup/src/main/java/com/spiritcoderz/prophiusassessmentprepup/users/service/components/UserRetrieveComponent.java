@@ -10,6 +10,7 @@ import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserEntityMana
 import com.spiritcoderz.prophiusassessmentprepup.users.utility.ErrorHandlerUtils;
 import com.spiritcoderz.prophiusassessmentprepup.users.utility.ImageUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,36 +23,18 @@ public class UserRetrieveComponent {
 
     private final UserEntityManager userEntityManager;
     private final FollowerEntityManager followerEntityManager;
+
+    private UserCacheManagementComponent userCacheManagementComponent;
     private final UserMapperImpl userMapper;
-
-
-    public UserResponse retrieveUserById(Integer id, UserResponse userResponse, List<String> errors) {
-
-        Optional<User> user = userEntityManager.getUserById(id);
-
-        if(user.isPresent()){
-
-            UserDTO userDTO = createUserDTO(user.get());
-            userResponse.setUserDTO( userDTO );
-
-            ErrorHandlerUtils.updateUserResponse( userResponse, AppConstants.USER_REGISTER_SUCCESS_MESSAGE);
-        }
-
-
-        if(user.isEmpty()){
-            errors.add(AppConstants.USER_REGISTER_FAILURE_MESSAGE);
-            userResponse.setErrors(errors);
-        }
-
-        return userResponse;
-    }
+    private final CacheManager cacheManager;
 
 
     public UserResponse retrieveUserByEmail(String email, UserResponse userResponse, List<String> errors) {
         Optional<User> user = null;
 
-        if( validateEmail(email) )
-            user = userEntityManager.getUserByEmail(email);
+        if( validateEmail(email) ) {
+            user = userCacheManagementComponent.getUserFromCache(email);
+        }
 
         if(user.isPresent()){
 
@@ -63,6 +46,35 @@ public class UserRetrieveComponent {
 
 
         if(user.isEmpty()){
+
+            Optional<User> savedUser = userEntityManager.getUserByEmail(email);
+            userCacheManagementComponent.addUserToCache(savedUser.get());
+
+            errors.add(AppConstants.USER_RETRIEVE_FAILURE_MESSAGE);
+            userResponse.setErrors(errors);
+        }
+
+         return userResponse;
+    }
+
+    public UserResponse retrieveUserById(Integer id, UserResponse userResponse, List<String> errors) {
+        Optional<User> user = null;
+
+        user = userCacheManagementComponent.getUserFromCache(id);
+
+        if(user.isPresent()){
+
+            UserDTO userDTO = createUserDTO(user.get());
+            userResponse.setUserDTO(userDTO);
+
+            ErrorHandlerUtils.updateUserResponse( userResponse, AppConstants.USER_REGISTER_SUCCESS_MESSAGE);
+        }
+
+
+        if(user.isEmpty()){
+
+            Optional<User> savedUser = userEntityManager.getUserById(id);
+            userCacheManagementComponent.addUserToCache(savedUser.get());
 
             errors.add(AppConstants.USER_RETRIEVE_FAILURE_MESSAGE);
             userResponse.setErrors(errors);
@@ -77,16 +89,8 @@ public class UserRetrieveComponent {
 
 
     private UserDTO createUserDTO(User user) {
-
         UserDTO userDTO;
         userDTO = userMapper.userToUserDTO(user);
-
-        List<Object> followerList = followerEntityManager.findAllFollowers(userDTO.getId());
-        List<Object> followingList = followerEntityManager.findAllFollowing(userDTO.getId());
-
-        userDTO.setFollowers(followerList);
-        userDTO.setFollowing(followingList);
-
         return userDTO;
     }
 }

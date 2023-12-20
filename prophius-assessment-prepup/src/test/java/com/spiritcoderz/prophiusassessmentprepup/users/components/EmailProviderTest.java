@@ -7,6 +7,7 @@ import com.spiritcoderz.prophiusassessmentprepup.users.entity.User;
 import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserEntityManager;
 import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserRepository;
 import com.spiritcoderz.prophiusassessmentprepup.users.service.components.EmailValidationProvider;
+import com.spiritcoderz.prophiusassessmentprepup.users.service.components.UserCacheManagementComponent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

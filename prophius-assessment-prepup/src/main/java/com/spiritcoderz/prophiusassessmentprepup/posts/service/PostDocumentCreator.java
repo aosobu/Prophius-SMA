@@ -29,7 +29,7 @@ public class PostDocumentCreator {
     public void cachePostDocument(Post post){
 
         String postDocumentKey = getDocumentKey(post.getId());
-        cacheManager.getCache("post-like").put(postDocumentKey, Integer.class);
+        cacheManager.getCache("post-like").put(postDocumentKey, post);
 
     }
 

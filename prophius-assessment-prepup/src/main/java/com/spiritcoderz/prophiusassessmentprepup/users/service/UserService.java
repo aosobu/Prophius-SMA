@@ -14,10 +14,6 @@ public class UserService {
         return userOperations.saveUser(userRequest);
     }
 
-    public UserResponse getUserByIdCredential(Integer id) {
-        return userOperations.getUserById(id);
-    }
-
     public UserResponse getUserByEmailCredential(String email) {
         return userOperations.getUserByEmail(email);
     }
@@ -34,7 +30,7 @@ public class UserService {
         return userOperations.executeFollowRequest(followRequest, new UserResponse());
     }
 
-    public UserResponse deleteUser(Integer id) {
-        return userOperations.deleteUser(id);
+    public UserResponse deleteUser(String email) {
+        return userOperations.deleteUser(email);
     }
 }

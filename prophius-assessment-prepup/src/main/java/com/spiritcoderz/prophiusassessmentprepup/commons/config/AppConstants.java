@@ -32,4 +32,10 @@ public class AppConstants {
     public static final String FILE_STORAGE_PATH = "https://aws://s3/prophius-buckects/";
     public static final String COMMENT_UPDATE_FAILURE = "comment update unsuccessful";
     public static final String COMMENT_UPDATE_SUCCESS = "success";
+
+    public static String USER_CACHE_KEY_PRIMARY = "#email";
+    public static String USER_CACHE_KEY_SECONDARY = "#id";
+
+    public static String USER_LIST_KEY = "#users";
+    public static String CACHE_NAME = "users";
 }

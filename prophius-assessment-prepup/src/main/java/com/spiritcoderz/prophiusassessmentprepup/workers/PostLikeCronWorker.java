@@ -1,7 +1,9 @@
 package com.spiritcoderz.prophiusassessmentprepup.workers;
 
 
+import com.spiritcoderz.prophiusassessmentprepup.posts.entity.Post;
 import com.spiritcoderz.prophiusassessmentprepup.posts.repository.PostLikeEntityManager;
+import com.spiritcoderz.prophiusassessmentprepup.posts.service.PostDocumentCreator;
 import com.spiritcoderz.prophiusassessmentprepup.posts.utils.PostDocumentUtils;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -21,16 +23,16 @@ public class PostLikeCronWorker {
 
     private final PostLikeEntityManager postLikeEntityManager;
     private final CacheManager cacheManager;
+
+    private final PostDocumentCreator postDocumentCreator;
     Logger logger = LoggerFactory.getLogger(PostLikeCronWorker.class);
 
     private final String CACHE_NAME = "post-like";
 
     private final String CACHE_KEY = "post-keys";
 
-    @Scheduled(cron = "*/1 * * * * *")
+    //@Scheduled(cron = "*/1 * * * * *")
     public void countPostLike(){
-
-        logger.info("Starting PostLike Cron " + LocalDateTime.now());
 
         if( getCache(CACHE_NAME) != null ){
 
@@ -44,13 +46,25 @@ public class PostLikeCronWorker {
                 postLikeCountSnapShot += currentDBLikeCount;
 
                 getCache(CACHE_NAME).put(key, postLikeCountSnapShot);
+                updatePostDocument(postId, postLikeCountSnapShot);
             });
         }
 
-        logger.info("Exiting PostLike Cron " + LocalDateTime.now());
     }
 
     private Cache getCache(String name){
         return cacheManager.getCache(name);
+    }
+
+    public void updatePostDocument(int postKey, int likeCount){
+
+        if( getCache(CACHE_NAME) != null ) {
+            String documentKey = PostDocumentUtils.generatePostDocumentKey(postKey);
+            Post cachedPost = getCache(CACHE_NAME).get(documentKey, Post.class);
+
+            cachedPost.setLikeCount(likeCount);
+            postDocumentCreator.cachePostDocument(cachedPost);
+        }
+
     }
 }
