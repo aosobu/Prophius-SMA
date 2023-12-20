@@ -26,7 +26,6 @@ public class PostLikeKeysWorker {
     public void countPostLike(){
 
         if(getCache(CACHE_NAME) != null){
-
             List<Integer> keys = postLikeEntityManager.selectDistinctPostIds();
             getCache(CACHE_NAME).put(CACHE_KEY, keys);
             addPostKeyToCache(keys);

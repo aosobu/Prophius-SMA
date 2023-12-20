@@ -1,10 +1,9 @@
 package com.spiritcoderz.prophiusassessmentprepup.users.repository;
 
+import com.spiritcoderz.prophiusassessmentprepup.users.dto.UserDTO;
 import com.spiritcoderz.prophiusassessmentprepup.users.entity.User;
-import com.spiritcoderz.prophiusassessmentprepup.users.service.components.UserCacheManagementComponent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +28,14 @@ public class UserEntityManager {
 
     public Optional<User> getUserById(int id){
         return userRepository.findById(id);
+    }
+
+    public List<User> findAllFollowers(Integer id) {
+        return userRepository.findAllFollowers(id);
+    }
+
+    public List<UserDTO> findAllFollowing(Integer id) {
+        return userRepository.findAllFollowing(id);
     }
 
     public List<String> selectDistinctEmails() {

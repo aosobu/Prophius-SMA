@@ -3,7 +3,7 @@ package com.spiritcoderz.prophiusassessmentprepup.users.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spiritcoderz.prophiusassessmentprepup.commons.entity.AbstractAuditable;
 import com.spiritcoderz.prophiusassessmentprepup.commons.wrappers.BeanWrapper;
-import com.spiritcoderz.prophiusassessmentprepup.posts.entity.Post;
+import com.spiritcoderz.prophiusassessmentprepup.users.dto.UserRecord;
 import com.spiritcoderz.prophiusassessmentprepup.users.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -42,6 +42,10 @@ public class User extends AbstractAuditable implements UserDetails {
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime lastLoginDate;
     private transient BeanWrapper beanWrapper;
+
+    private transient List<UserRecord> followers;
+    private transient List<UserRecord> following;
+    private transient List<UserRecord> recentPosts;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -26,21 +26,19 @@ public class CacheInvalidator {
     @Value("${application.cache.activate}")
     private boolean invalidateCache;
 
-    private final String[] CACHE_NAME = {"post-like"};
+    private final String[] CACHE_NAME = {"post-like", "user", "security"};
 
     @Scheduled(cron = "*/5 * * * * *")
     public void countPostLike(){
 
         if( invalidateCache ) {
-
             List<String> caches = Arrays.asList(CACHE_NAME);
             caches.forEach(cache -> {
                 if(getCache(cache) != null){
                     cacheManager.getCache(cache).clear();
                 }
             });
-
-            //new ConcurrentMapCacheManager(CACHE_NAME);
+            //TODO::cache rebuild
         }
 
     }

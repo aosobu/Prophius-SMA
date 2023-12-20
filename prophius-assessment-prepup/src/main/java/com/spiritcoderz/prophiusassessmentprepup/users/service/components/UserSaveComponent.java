@@ -23,10 +23,8 @@ public class UserSaveComponent {
     private final UserEntityManager userEntityManager;
     private final BeanWrapper beanWrapper;
     private final List<ValidatorManager> validatorProviders;
-
     private final UserCacheManagementComponent userCacheManagementComponent;
 
-    private final CacheManager cacheManager;
 
     public UserResponse saveUser(RegisterUserRequest userRequest, UserResponse userResponse){
         UserResponse [] validationResponseContainer = new UserResponse[1];
@@ -90,11 +88,9 @@ public class UserSaveComponent {
     }
 
     private UserDTO buildUserDTO(User savedUser) {
-        return UserDTO
-                .builder()
-                .username(savedUser.getUsername())
-                .email(savedUser.getEmail())
-                .profilePicture("")
-                .build();
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(savedUser.getUsername());
+        userDTO.setEmail(savedUser.getEmail());
+      return userDTO;
     }
 }

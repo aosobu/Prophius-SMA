@@ -4,6 +4,7 @@ import com.spiritcoderz.prophiusassessmentprepup.commons.config.AppConstants;
 import com.spiritcoderz.prophiusassessmentprepup.users.api.RegisterUserRequest;
 import com.spiritcoderz.prophiusassessmentprepup.users.api.UserResponse;
 import com.spiritcoderz.prophiusassessmentprepup.users.entity.User;
+import com.spiritcoderz.prophiusassessmentprepup.users.mapper.UserMapper;
 import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserEntityManager;
 import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserRepository;
 import com.spiritcoderz.prophiusassessmentprepup.users.service.components.EmailValidationProvider;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.cache.CacheManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ public class EmailProviderTest {
         existingUser = User.builder().email("aosobu.dev@gmail.com").build();
         existingUserWithRequestEmail = Optional.of(existingUser);
 
-        userEntityManager = new UserEntityManager(Mockito.mock(UserRepository.class));
+        userEntityManager = new UserEntityManager(Mockito.mock(UserRepository.class), Mockito.mock(CacheManager.class));
         emailValidationProvider = new EmailValidationProvider(userEntityManager);
     }
 

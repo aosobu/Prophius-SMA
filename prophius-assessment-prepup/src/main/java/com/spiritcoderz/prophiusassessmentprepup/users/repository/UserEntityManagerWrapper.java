@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class UserEntityManagerWrapper {
+public class  UserEntityManagerWrapper {
 
     private final UserEntityManager userEntityManager;
 
@@ -40,5 +40,9 @@ public class UserEntityManagerWrapper {
             userCacheManagementComponent.addUserToCache(user.get());
         }
         return user;
+    }
+
+    public void updateCache(User user){
+        userCacheManagementComponent.updateCache(user);
     }
 }

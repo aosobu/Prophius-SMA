@@ -12,7 +12,7 @@ public class AppConstants {
     public static final String USER_RETRIEVE_SUCCESS_MESSAGE = "success";
     public static final String EMAIL_ALREADY_EXISTS = "email already used";
     public static final String FOLLOW_REQUEST_SUCCESS = "success! an invite has been sent!";
-    public static final String FOLLOW_REQUEST_FAILURE = "your follow invite cannot be sent now. Try later";
+    public static final String FOLLOW_REQUEST_FAILURE = "Your are alrady following this connection";
     public static final String DELETE_REQUEST_SUCCESS = "success";
     public static final String DELETE_REQUEST_FAILURE = "failure to unregister";
     public static final String POSTLIKE_REQUEST_SUCCESS = "success";

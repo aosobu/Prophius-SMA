@@ -76,4 +76,14 @@ public class UserCacheManagementComponent {
         User user = getCache(AppConstants.CACHE_NAME).get( getUserIdKey(id) , User.class);
         return user == null ? Optional.empty() : Optional.of(user);
     }
+
+    public void updateCache(User savedUser) {
+        if(getCache(cacheName) != null) {
+            getCache(cacheName).evict("#"+savedUser);
+            getCache(cacheName).put("#"+savedUser, savedUser);
+
+            getCache(cacheName).evict("#"+savedUser.getId());
+            getCache(cacheName).put("#"+savedUser.getId() , savedUser);
+        }
+    }
 }
