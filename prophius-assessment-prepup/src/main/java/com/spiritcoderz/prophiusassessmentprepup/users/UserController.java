@@ -29,13 +29,18 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserByEmailCredential(email));
     }
 
+    @GetMapping("/id/{id}")
+    public ResponseEntity<UserResponse> retrieve(@PathVariable Integer id) {
+        return ResponseEntity.ok(userService.getUserByIdCredential(id));
+    }
+
     @PutMapping("/password")
     public ResponseEntity<UserResponse> editUserDetail(@Valid @RequestBody UpdatePasswordRequest updateRequest) {
         return ResponseEntity.ok(userService.updateUserPassword(updateRequest));
     }
 
     @PutMapping("/profile-image")
-    public ResponseEntity<UserResponse> editUserDetail(@Valid @RequestBody UpdateImageRequest updateRequest) {
+    public ResponseEntity<UserResponse> editUserDetail(@Valid @ModelAttribute UpdateImageRequest updateRequest) {
         return ResponseEntity.ok(userService.updateUserImage(updateRequest));
     }
 

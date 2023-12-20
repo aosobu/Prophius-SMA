@@ -32,11 +32,15 @@ public class UserOperationsFacade {
         return userUpdateComponent.updateProfileImage(updateRequest, new UserResponse());
     }
 
-    public UserResponse executeFollowRequest(FollowRequest followRequest, UserResponse userResponse) {
-        return followComponent.execute(followRequest, userResponse);
+    public UserResponse executeFollowRequest(FollowRequest followRequest) {
+        return followComponent.execute(followRequest);
     }
 
     public UserResponse deleteUser(String email) {
         return userDeleteComponent.deleteUser(email, new UserResponse());
+    }
+
+    public UserResponse getUserById(int id) {
+        return userRetrieveComponent.retrieveUserById(id, new UserResponse(), new ArrayList<>());
     }
 }

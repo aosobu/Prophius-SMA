@@ -21,11 +21,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationConfig {
     private final BeanWrapper beanWrapper;
 
-    private final UserEntityManager userDataSource;
+    private final UserRepository userRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userDataSource.getUserByEmail(username)
+        return username -> userRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
@@ -49,7 +49,7 @@ public class ApplicationConfig {
 
     @Bean
     public CacheManager cacheManager() {
-        String [] caches = {"post-like", "user"};
+        String [] caches = {"post-like", "user", "security"};
         return new ConcurrentMapCacheManager(caches);
     }
 

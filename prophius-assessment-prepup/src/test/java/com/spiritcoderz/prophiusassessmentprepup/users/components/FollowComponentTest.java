@@ -6,6 +6,7 @@ import com.spiritcoderz.prophiusassessmentprepup.users.entity.Followers;
 import com.spiritcoderz.prophiusassessmentprepup.users.mapper.UserMapperImpl;
 import com.spiritcoderz.prophiusassessmentprepup.users.repository.FollowerEntityManager;
 import com.spiritcoderz.prophiusassessmentprepup.users.repository.FollowerRepository;
+import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserEntityManagerWrapper;
 import com.spiritcoderz.prophiusassessmentprepup.users.service.components.FollowComponent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -29,7 +30,8 @@ public class FollowComponentTest {
 
         followerEntityManager = new FollowerEntityManager(Mockito.mock(FollowerRepository.class),
                 Mockito.mock(UserMapperImpl.class));
-        followComponent = new FollowComponent(followerEntityManager);
+        followComponent = new FollowComponent(followerEntityManager,
+                                            Mockito.mock(UserEntityManagerWrapper.class), Mockito.mock(UserMapperImpl.class));
 
     }
     @Test
@@ -41,7 +43,7 @@ public class FollowComponentTest {
                 .when(followerEntityManager.saveFollowRequest(follower))
                 .thenReturn(savedFollower);
 
-        UserResponse userResponse = followComponent.execute(followRequest, new UserResponse());
+        UserResponse userResponse = followComponent.execute(followRequest));
 
         Assertions.assertEquals(userResponse.getMessage(), MESSAGE);
     }
@@ -56,7 +58,7 @@ public class FollowComponentTest {
                 .when(followerEntityManager.saveFollowRequest(follower))
                 .thenReturn(savedFollower);
 
-        UserResponse userResponse = followComponent.execute(followRequest, new UserResponse());
+        UserResponse userResponse = followComponent.execute(followRequest);
 
         Assertions.assertNotEquals(userResponse.getMessage(), MESSAGE);
     }

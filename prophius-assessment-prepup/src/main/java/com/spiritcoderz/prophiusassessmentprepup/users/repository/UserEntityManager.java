@@ -16,14 +16,14 @@ public class UserEntityManager {
 
     private final UserRepository userRepository;
 
+    private final CacheManager cacheManager;
+
     public User saveUser(User user){
         return userRepository.save(user);
     }
 
 
-    @Cacheable(value="security", key = "#email")
     public Optional<User> getUserByEmail(String email){
-        System.out.println("going to the database");
        return userRepository.findByEmail(email);
     }
 

@@ -11,7 +11,7 @@ public class AppConstants {
     public static final String USER_RETRIEVE_FAILURE_MESSAGE = "error occurred while retrieving user details : ";
     public static final String USER_RETRIEVE_SUCCESS_MESSAGE = "success";
     public static final String EMAIL_ALREADY_EXISTS = "email already used";
-    public static final String FOLLOW_REQUEST_SUCCESS = "success";
+    public static final String FOLLOW_REQUEST_SUCCESS = "success! an invite has been sent!";
     public static final String FOLLOW_REQUEST_FAILURE = "your follow invite cannot be sent now. Try later";
     public static final String DELETE_REQUEST_SUCCESS = "success";
     public static final String DELETE_REQUEST_FAILURE = "failure to unregister";
@@ -37,5 +37,5 @@ public class AppConstants {
     public static String USER_CACHE_KEY_SECONDARY = "#id";
 
     public static String USER_LIST_KEY = "#users";
-    public static String CACHE_NAME = "users";
+    public static String CACHE_NAME = "user";
 }

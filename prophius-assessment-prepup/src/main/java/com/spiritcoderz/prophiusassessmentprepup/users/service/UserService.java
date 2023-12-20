@@ -18,6 +18,10 @@ public class UserService {
         return userOperations.getUserByEmail(email);
     }
 
+    public UserResponse getUserByIdCredential(int id) {
+        return userOperations.getUserById(id);
+    }
+
     public UserResponse updateUserPassword(UpdatePasswordRequest updateRequest) {
         return userOperations.updateUserDetails(updateRequest);
     }
@@ -27,7 +31,7 @@ public class UserService {
     }
 
     public UserResponse executeFollowRequest(FollowRequest followRequest) {
-        return userOperations.executeFollowRequest(followRequest, new UserResponse());
+        return userOperations.executeFollowRequest(followRequest);
     }
 
     public UserResponse deleteUser(String email) {

@@ -20,6 +20,5 @@ public class UpdateImageRequest {
     @NotEmpty(message = "Email cannot be empty")
     private String email;
 
-    @NotNull(message = "image cannot be empty")
     private MultipartFile image;
 }

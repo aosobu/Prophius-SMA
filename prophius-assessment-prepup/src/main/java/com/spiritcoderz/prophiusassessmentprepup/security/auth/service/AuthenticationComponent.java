@@ -20,8 +20,7 @@ public class AuthenticationComponent {
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
 
         authenticationManager.authenticate(beanWrapper.getAuthenticationBean(request));
-        var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow();
+        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.getToken(user);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)

@@ -6,9 +6,11 @@ import com.spiritcoderz.prophiusassessmentprepup.commons.wrappers.BeanWrapper;
 import com.spiritcoderz.prophiusassessmentprepup.users.api.UpdateImageRequest;
 import com.spiritcoderz.prophiusassessmentprepup.users.api.UpdatePasswordRequest;
 import com.spiritcoderz.prophiusassessmentprepup.users.api.UserResponse;
+import com.spiritcoderz.prophiusassessmentprepup.users.dto.UserDTO;
 import com.spiritcoderz.prophiusassessmentprepup.users.entity.User;
 import com.spiritcoderz.prophiusassessmentprepup.users.exception.CustomProphiusException;
 import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserEntityManager;
+import com.spiritcoderz.prophiusassessmentprepup.users.repository.UserEntityManagerWrapper;
 import com.spiritcoderz.prophiusassessmentprepup.users.utility.ImageUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.CacheManager;
@@ -23,19 +25,19 @@ import java.util.Optional;
 public class UserUpdateComponent {
 
     private final UserEntityManager userEntityManager;
+
+    private final UserEntityManagerWrapper userEntityManagerWrapper;
     private final BeanWrapper beanWrapper;
     private CacheManager cacheManager;
 
-    public <T> UserResponse updatePassword(T updateRequest, UserResponse userResponse) {
+    public UserResponse updatePassword(UpdatePasswordRequest updateRequest, UserResponse userResponse) {
 
-        UpdatePasswordRequest updatePasswordRequest = ((UpdatePasswordRequest) updateRequest);
-
-        Optional<User> user = userEntityManager.getUserByEmail(updatePasswordRequest.getEmail());
+        Optional<User> user = userEntityManagerWrapper.getUserByEmail(updateRequest.getEmail());
 
         if(user.isPresent()){
 
             User updatedUser = user.get();
-            String updatedPassword = beanWrapper.getPasswordEncoder().encode(updatePasswordRequest.getPassword());
+            String updatedPassword = beanWrapper.getPasswordEncoder().encode(updateRequest.getPassword());
             updatedUser.setPassword(updatedPassword);
 
             User savedUser = userEntityManager.saveUser(updatedUser);
@@ -64,12 +66,13 @@ public class UserUpdateComponent {
         MultipartFile profileImage = updateRequest.getImage();
 
         if(profileImage.getOriginalFilename() == null) {
+            userResponse = new UserResponse();
             userResponse.setMessage(AppConstants.IMAGE_NAME_INVALID);
             return userResponse;
         }
 
         if(profileImage.getOriginalFilename() != null){
-            Optional<User> savedUser = userEntityManager.getUserByEmail(updateRequest.getEmail());
+            Optional<User> savedUser = userEntityManagerWrapper.getUserByEmail(updateRequest.getEmail());
             userCopy = updateUserProfileImageDetails( savedUser, profileImage );
         }
 
@@ -77,7 +80,10 @@ public class UserUpdateComponent {
             User savedUser = userCopy.get();
             userEntityManager.saveUser( savedUser );
             userResponse.setMessage( AppConstants.USER_IMAGE_UPLOAD_SUCCESSFUL );
-            userResponse.getUserDTO().setProfilePicture( savedUser.getProfilePictureFilePath() );
+
+            UserDTO userDTO = buildUserDTO(savedUser);
+            userResponse.setUserDTO(userDTO);
+
             return userResponse;
         }
 
@@ -105,5 +111,13 @@ public class UserUpdateComponent {
         } catch (IOException e) {
             throw new CustomProphiusException(e.getMessage());
         }
+    }
+
+    private UserDTO buildUserDTO(User savedUser){
+        UserDTO userDTO = new UserDTO();
+        userDTO.setProfilePicture(savedUser.getProfilePictureFilePath());
+        userDTO.setEmail(savedUser.getEmail());
+        userDTO.setUsername(savedUser.getUsername());
+        return userDTO;
     }
 }

@@ -41,6 +41,8 @@ public class UserCacheManagementComponent {
         List<String> userList = getCache(cacheName).get(AppConstants.USER_LIST_KEY, ArrayList.class);
 
         if(userList == null){
+            userList = new ArrayList<>();
+            userList.add(savedUser.getEmail());
             getCache(cacheName).put(AppConstants.USER_LIST_KEY, userList);
         }else{
             userList.add(savedUser.getEmail());
