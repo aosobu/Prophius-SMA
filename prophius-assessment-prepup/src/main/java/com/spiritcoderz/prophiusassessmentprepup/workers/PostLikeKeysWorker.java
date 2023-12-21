@@ -1,5 +1,6 @@
 package com.spiritcoderz.prophiusassessmentprepup.workers;
 
+import com.spiritcoderz.prophiusassessmentprepup.posts.entity.Post;
 import com.spiritcoderz.prophiusassessmentprepup.posts.repository.PostLikeEntityManager;
 import com.spiritcoderz.prophiusassessmentprepup.posts.utils.PostDocumentUtils;
 import lombok.RequiredArgsConstructor;
@@ -22,13 +23,13 @@ public class PostLikeKeysWorker {
     private final String CACHE_KEY = "post-keys";
     Logger logger = LoggerFactory.getLogger(PostLikeKeysWorker.class);
 
-    //@Scheduled(cron = "*/2 * * * * *")
+    @Scheduled(cron = "*/2 * * * * *")
     public void countPostLike(){
 
         if(getCache(CACHE_NAME) != null){
             List<Integer> keys = postLikeEntityManager.selectDistinctPostIds();
             getCache(CACHE_NAME).put(CACHE_KEY, keys);
-            addPostKeyToCache(keys);
+            addPostKeyAndDocumentKeyToCache(keys);
         }
     }
 
@@ -41,15 +42,16 @@ public class PostLikeKeysWorker {
         return cacheManager.getCache("post-like");
     }
 
-    public void addPostKeyToCache(List<Integer> keys){
+    public void addPostKeyAndDocumentKeyToCache(List<Integer> keys){
         keys.forEach(key -> {
 
-            String documentKey = PostDocumentUtils.generatePostKey(key);
-            Cache.ValueWrapper value = getCache(CACHE_NAME).get(documentKey);
+            String postKey = PostDocumentUtils.generatePostKey(key);
+            Cache.ValueWrapper post = getCache(CACHE_NAME).get(postKey);
 
-            if(isKeyExistsInCache(value)){
-                getCache(CACHE_NAME).put(documentKey, 0);
+            if(isKeyExistsInCache(post)){
+                getCache(CACHE_NAME).put(postKey, 0);
             }
+
         });
     }
 }

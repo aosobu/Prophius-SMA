@@ -16,13 +16,15 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This event sourcing algorithm is not optimal as it does not use snapshots.
+ */
 @Component
 @RequiredArgsConstructor
 public class PostLikeCronWorker {
 
     private final PostLikeEntityManager postLikeEntityManager;
     private final CacheManager cacheManager;
-
     private final PostDocumentCreator postDocumentCreator;
     Logger logger = LoggerFactory.getLogger(PostLikeCronWorker.class);
 
@@ -30,23 +32,26 @@ public class PostLikeCronWorker {
 
     private final String CACHE_KEY = "post-keys";
 
-    //@Scheduled(cron = "*/1 * * * * *")
+    @Scheduled(cron = "*/1 * * * * *")
     public void countPostLike(){
 
         if( getCache(CACHE_NAME) != null ){
 
             List<Integer> postIdList = getCache(CACHE_NAME).get(CACHE_KEY, ArrayList.class);
-            postIdList.forEach( postId->{
 
-                Integer currentDBLikeCount = postLikeEntityManager.getCountForPostId(postId);
-                String key = PostDocumentUtils.generatePostKey(postId);
+            if(postIdList != null){
+                postIdList.forEach( postId->{
 
-                Integer postLikeCountSnapShot = getCache(CACHE_NAME).get(key, Integer.class);
-                postLikeCountSnapShot += currentDBLikeCount;
+                    Integer currentDBLikeCount = postLikeEntityManager.getCountForPostId(postId);
+                    String key = PostDocumentUtils.generatePostKey(postId);
 
-                getCache(CACHE_NAME).put(key, postLikeCountSnapShot);
-                updatePostDocument(postId, postLikeCountSnapShot);
-            });
+                    getCache(CACHE_NAME).evict(key);
+                    getCache(CACHE_NAME).put(key, currentDBLikeCount);
+
+                    updatePostDocument(postId, currentDBLikeCount);
+                });
+            }
+
         }
 
     }

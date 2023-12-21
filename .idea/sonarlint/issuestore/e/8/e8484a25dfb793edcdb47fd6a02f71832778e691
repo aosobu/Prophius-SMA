@@ -1,0 +1,23 @@
+
+J
+java:S5411""(Use a primitive boolean expression here.(Å¯¡»ûÿÿÿÿ8Âîş§È1
+T
+java:S2789 "2Replace this null literal by an "Optional" object.(ÌŞéÃùÿÿÿÿ8Âîş§È1
+T
+java:S2789:"2Replace this null literal by an "Optional" object.(ÌŞéÃùÿÿÿÿ8Âîş§È1
+_
+java:S2259&"BA "NullPointerException" could be thrown; "user" is nullable here.(†şøş8Ëîş§È1
+Z
+java:S18541"=Remove this useless assignment to local variable "savedUser".(Ö¸ïÖ8§é¡¬È1
+K
+java:S14811".Remove this unused "savedUser" local variable.(Ö¸ïÖ8ªé¡¬È1
+_
+java:S1854I"=Remove this useless assignment to local variable "savedUser".(ìºÙ¢ÿÿÿÿÿ8ÿ©¥¬È1
+P
+java:S1481I".Remove this unused "savedUser" local variable.(ìºÙ¢ÿÿÿÿÿ8ƒª¥¬È1
+‰
+java:S1128"mRemove this unused import 'com.spiritcoderz.prophiusassessmentprepup.users.repository.FollowerEntityManager'.(Å‹Y8¼äë¯È1
+|
+java:S1128"_Remove this unused import 'com.spiritcoderz.prophiusassessmentprepup.users.utility.ImageUtils'.(ï¾›õ8½äë¯È1
+`
+java:S1128"CRemove this unused import 'org.springframework.cache.CacheManager'.(÷ë¿Û8½äë¯È1

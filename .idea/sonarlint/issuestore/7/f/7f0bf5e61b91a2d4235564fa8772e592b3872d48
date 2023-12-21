@@ -1,0 +1,15 @@
+
+c
+java:S2259"GA "NullPointerException" could be thrown; "getCache()" can return null.(»Çï8´ ™ÎÈ1
+q	java:S116"URename this field "CACHE_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ã–±õ8µ ™ÎÈ1
+p	java:S116"TRename this field "CACHE_KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§ÏŒ†8µ ™ÎÈ1
+>
+java:S1170"!Make this final field static too.(Ã–±õ8µ ™ÎÈ1
+>
+java:S1170"!Make this final field static too.(§ÏŒ†8µ ™ÎÈ1
+H
+java:S1172)"+Remove this unused method parameter "name".(©¬¨ƒ8¼ ™ÎÈ1
+t
+java:S1128"XRemove this unused import 'com.spiritcoderz.prophiusassessmentprepup.posts.entity.Post'.( çú:8 ¼ŠÏÈ1
+V
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ8À ™ÎÈ1

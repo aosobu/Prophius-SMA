@@ -1,0 +1,31 @@
+
+·
+java:S3577"”Rename class "UserRetrieveComponent" to match the regular expression: '^((Test|IT)[a-zA-Z0-9_]+|[A-Z][a-zA-Z0-9_]*(Test|Tests|TestCase|IT|ITCase))$'(òÛ£¿şÿÿÿÿ8Î¦ğîÇ1
+;
+java:S5786"Remove this 'public' modifier.(¸ğİ£8Î¦ğîÇ1
+;
+java:S5786+"Remove this 'public' modifier.(ÚÌ…ü8Î¦ğîÇ1
+@
+java:S57867"Remove this 'public' modifier.(¶Ùş¸ÿÿÿÿÿ8È«ÿîÇ1
+@
+java:S5786@"Remove this 'public' modifier.(¥¼Á¶ùÿÿÿÿ8•¼©ïÇ1
+s
+java:S3415$"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(±õåª8Ï¦ğîÇ1
+s
+java:S3415%"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(÷Ì¿Ó8Ï¦ğîÇ1
+x
+java:S3415&"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(ª²ä³ûÿÿÿÿ8 ¸ûîÇ1
+x
+java:S3415'"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(“Ìğ½ıÿÿÿÿ8¬‚ıîÇ1
+s
+java:S34150"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(±õåª8Ğ¦ğîÇ1
+s
+java:S34151"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(÷Ì¿Ó8¢»şîÇ1
+x
+java:S34152"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(÷Ë„×úÿÿÿÿ8¢»şîÇ1
+s
+java:S34153"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(»Ù³Ë8†û‡ïÇ1
+s
+java:S3415<"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(±õåª8âŒÿîÇ1
+s
+java:S3415E"VSwap these 2 arguments so they are in the correct order: expected value, actual value.(±õåª8ï©ïÇ1

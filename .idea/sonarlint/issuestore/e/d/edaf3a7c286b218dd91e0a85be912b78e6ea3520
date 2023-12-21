@@ -1,0 +1,13 @@
+
+
+java:S1488("dImmediately return this expression instead of assigning it to the temporary variable "enrichedPost".(çƒ¨â8¥ÿÓ–È1
+
+java:S1128"dRemove this unused import 'com.spiritcoderz.prophiusassessmentprepup.posts.utils.PostDocumentUtils'.(û¦ù8¯åÅËÈ1
+`
+java:S1128"CRemove this unused import 'org.springframework.cache.CacheManager'.(÷ë¿Û8¯åÅËÈ1
+h
+java:S1128"KRemove this unused import 'org.springframework.cache.annotation.Cacheable'.(İºØ“8¯åÅËÈ1
+c
+java:S1128"ARemove this unused import 'org.springframework.data.domain.Sort'.(ëÿ€ëøÿÿÿÿ8¯åÅËÈ1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8¯åÅËÈ1

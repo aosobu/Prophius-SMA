@@ -1,0 +1,11 @@
+
+g
+java:S1192"JDefine a constant instead of duplicating this literal "post-like" 4 times.(ÆµíÐ8ÀÐÍ–È1
+d
+java:S2259 "GA "NullPointerException" could be thrown; "getCache()" can return null.(£Ÿªé8ÎÐÍ–È1
+d
+java:S2259'"GA "NullPointerException" could be thrown; "getCache()" can return null.(Õœ½²8ÜùÒ–È1
+i
+java:S2259."GA "NullPointerException" could be thrown; "getCache()" can return null.(ðÊ¡ñøÿÿÿÿ8ÐÐÍ–È1
+d
+java:S2259"GA "NullPointerException" could be thrown; "getCache()" can return null.(ÆµíÐ8ÜùÒ–È1

@@ -15,7 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableJpaAuditing
 @EnableScheduling
 @RequiredArgsConstructor
-public class ProphiusAssessmentPrepupApplication implements CommandLineRunner {
+public class ProphiusAssessmentPrepupApplication {
 
 	private final CacheManager cacheManager;
 	private final FollowerEntityManager followerEntityManager;
@@ -23,8 +23,4 @@ public class ProphiusAssessmentPrepupApplication implements CommandLineRunner {
 		SpringApplication.run(ProphiusAssessmentPrepupApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-
-	}
 }

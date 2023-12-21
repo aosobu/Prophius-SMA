@@ -1,3 +1,0 @@
---- schema creation -->
-INSERT INTO post (id, likes_count, user_id, content, created_date, last_modified_date)
-VALUES (1, 4, 1, 'Here we go again!', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
