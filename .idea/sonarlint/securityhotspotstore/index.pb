@@ -1,6 +1,4 @@
 
-U
-%prophius-assessment-prepup/.gitignore,6\2\6202611ebffaa627925ee73ddbe232068f58321b
 ≤
 Åprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/exception/UserNotRetrievedException.java,e\2\e2b1fe48f50091778c504be8e632c8f83e3d8916
 Ø
@@ -105,8 +103,6 @@ yprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentpre
 Åprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/security/filter/JwtAuthenticationProvider.java,3\7\37d92e8dff9280e367c3ef23ae398f97b07e586e
 §
 tprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/api/UpdateImageRequest.java,b\2\b297ed12c3bb1ddb51a741365779654adedc69d7
-µ
-Ñprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/service/components/UserUpdateComponent.java,8\5\857f704427fd8d557693a4b31d831c7ef15853c3
 ü
 oprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/api/FollowRequest.java,6\7\673a7461a2c0bb353c8ec65be7cbba360e2abd5f
 ¨
@@ -129,8 +125,6 @@ wprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentpre
 Çprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/service/components/UserSaveComponent.java,8\0\8097b93e98dbc79b5b5821c1a9dcbb3273991d54
 π
 àprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/service/components/EmailValidationProvider.java,1\c\1c7e4ba0d5ee9ad369f8418737b9436052f8e32e
-µ
-Ñprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/service/components/UserDeleteComponent.java,a\6\a6567a9ebfe98b4725cc2ff84477eeffdfa69ba3
 ô
 iprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/entity/User.java,5\1\5153ac1d518b28929dfe7816d66d6761f315ba38
 ú
@@ -145,8 +139,6 @@ sprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentpre
 lprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/UserController.java,3\0\30f8032cf557939d2165b81dda93aca23c9d91ad
 ±
 Äprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/service/components/FollowComponent.java,c\6\c643d82b1f3998f2c29fdffd4601060a4bea63e2
-æ
-çprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/service/components/UserCacheManagementComponent.java,2\8\28d90d49c407f3642bc02fd6c4b7a5aac4aa25fd
 Æ
 ~prophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/posts/service/components/PostComponent.java,e\9\e9df9e06f0c0372be5abc9d1c629966342fe731f
 ú
@@ -155,8 +147,6 @@ lprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentpre
 qprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/service/UserService.java,0\7\077c1fc76db44ebfc2100389cca20bc464ef4ee8
 ™
 zprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/service/UserOperationsFacade.java,b\7\b7375cfe3b9ec616ace7a2f398258cb1ab6cdc3c
-≤
-Åprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/repository/UserEntityManagerWrapper.java,7\5\75c5f3fe4edb5f810ad465dd052b7354e125c228
 ∑
 Üprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/users/service/components/UserRetrieveComponent.java,e\8\e8484a25dfb793edcdb47fd6a02f71832778e691
 ™
@@ -173,8 +163,6 @@ zprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentpre
 Çprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/posts/service/components/PostLikeComponent.java,b\7\b70c5bffc98fabad919b1e60e3312a14f8c859c6
 ©
 yprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/posts/service/PostDocumentCreator.java,5\8\58c936b68a9bd31f6e260c3d98b0e815b4c84025
-†
-pprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/workers/CacheInvalidator.java,d\b\dbfe74794dfbca48bd03643bb9a273639cb8379e
 •
 uprophius-assessment-prepup/src/main/java/com/spiritcoderz/prophiusassessmentprepup/posts/utils/PostDocumentUtils.java,8\6\86ae33bbfa97b9b2c1b36a4a05261b5f98dc6a91
 ¢

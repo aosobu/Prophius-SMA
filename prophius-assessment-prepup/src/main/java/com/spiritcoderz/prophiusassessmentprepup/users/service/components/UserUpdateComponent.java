@@ -43,7 +43,6 @@ public class UserUpdateComponent {
             User savedUser = userEntityManager.saveUser(updatedUser);
             return checkIfUpdateSuccessful(savedUser, updatedUser, userResponse);
 
-            //TODO:: update cache immediately
         }
 
 

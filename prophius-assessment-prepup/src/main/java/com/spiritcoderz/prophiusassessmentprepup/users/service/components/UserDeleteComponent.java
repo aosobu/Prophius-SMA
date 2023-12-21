@@ -23,7 +23,6 @@ public class UserDeleteComponent {
 
             deleteUser = userEntityManager.saveUser(deleteUser);
             updateUserResponseWithDeleteSuccess(deleteUser, userResponse);
-            //TODO:: update cache immediately
         }
 
         if(user.isEmpty()){
